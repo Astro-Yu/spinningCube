@@ -11,7 +11,7 @@ height = 44
 K1 = 40
 horizontalOffset = 0
 incrementSpeed = 0.6
-backgroundASCIICode = '.'
+backgroundASCIICode = ' '
 
 def calculateX(i, j, k):
   return j * np.sin(A) * np.sin(B) * np.cos(C) - \
@@ -55,65 +55,27 @@ def clear_terminal():
 
 
 while(True):
-    clear_terminal()
+    
     buffer = [backgroundASCIICode] * (width * height)
     zBuffer = [0] * (width * height)
 
     cubeWidth = 20
-    horizontalOffset = -2 * cubeWidth
+    horizontalOffset = 0.5 * cubeWidth
     for cubeX in np.arange(-cubeWidth,cubeWidth,incrementSpeed):
         for cubeY in np.arange(-cubeWidth,cubeWidth,incrementSpeed):
             calculateOnSurface(cubeX,cubeY,-cubeWidth,"@")
             calculateOnSurface(cubeWidth,cubeY,cubeX,"$")
-            calculateOnSurface(cubeWidth,cubeY,-cubeX,"~")
-            calculateOnSurface(-cubeX,cubeY,-cubeWidth,"#")
+            calculateOnSurface(-cubeWidth,cubeY,-cubeX,"~")
+            calculateOnSurface(-cubeX,cubeY,cubeWidth,"#")
             calculateOnSurface(cubeX,-cubeWidth,-cubeY,";")
             calculateOnSurface(cubeX,cubeWidth,cubeY,"+")
 
-
-    cubeWidth = 10
-    horizontalOffset = 1 * cubeWidth;
-    for cubeX in np.arange(-cubeWidth,cubeWidth,incrementSpeed):
-        for cubeY in np.arange(-cubeWidth,cubeWidth,incrementSpeed):
-            calculateOnSurface(cubeX, cubeY, -cubeWidth, '@');
-            calculateOnSurface(cubeWidth, cubeY, cubeX, '$');
-            calculateOnSurface(-cubeWidth, cubeY, -cubeX, '~');
-            calculateOnSurface(-cubeX, cubeY, cubeWidth, '#');
-            calculateOnSurface(cubeX, -cubeWidth, -cubeY, ';');
-            calculateOnSurface(cubeX, cubeWidth, cubeY, '+');
-    
-
-    cubeWidth = 5;
-    horizontalOffset = 8 * cubeWidth;
-    for cubeX in np.arange(-cubeWidth,cubeWidth,incrementSpeed):
-        for cubeY in np.arange(-cubeWidth,cubeWidth,incrementSpeed):
-            calculateOnSurface(cubeX, cubeY, -cubeWidth, '@');
-            calculateOnSurface(cubeWidth, cubeY, cubeX, '$');
-            calculateOnSurface(-cubeWidth, cubeY, -cubeX, '~');
-            calculateOnSurface(-cubeX, cubeY, cubeWidth, '#');
-            calculateOnSurface(cubeX, -cubeWidth, -cubeY, ';');
-            calculateOnSurface(cubeX, cubeWidth, cubeY, '+');
-
-    
     clear_terminal()
     for k in range(width * height):
         print(buffer[k] if k % width != 0 else '\n', end='')
 
-    A += 0.05
-    B += 0.05
-    C += 0.01
+    A += 0.1
+    B += 0.1
+    C += 0.1
 
-    time.sleep(0.1)
-
-
-
-
-
-
-
-
-    
-
-
-
-
+    #time.sleep(0.016)
