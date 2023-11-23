@@ -10,7 +10,7 @@ width = 160
 height = 44
 K1 = 40
 horizontalOffset = 0
-incrementSpeed = 0.6
+incrementSpeed = 1.5
 backgroundASCIICode = ' '
 
 def calculateX(i, j, k):
@@ -63,12 +63,12 @@ while(True):
     horizontalOffset = 0.5 * cubeWidth
     for cubeX in np.arange(-cubeWidth,cubeWidth,incrementSpeed):
         for cubeY in np.arange(-cubeWidth,cubeWidth,incrementSpeed):
-            calculateOnSurface(cubeX,cubeY,-cubeWidth,"@")
-            calculateOnSurface(cubeWidth,cubeY,cubeX,"$")
-            calculateOnSurface(-cubeWidth,cubeY,-cubeX,"~")
-            calculateOnSurface(-cubeX,cubeY,cubeWidth,"#")
-            calculateOnSurface(cubeX,-cubeWidth,-cubeY,";")
-            calculateOnSurface(cubeX,cubeWidth,cubeY,"+")
+            calculateOnSurface(cubeX,cubeY,-cubeWidth,'\033[95m' + '@' + '\033[0m')
+            calculateOnSurface(cubeWidth,cubeY,cubeX,'\033[34m'+ '$' + '\033[0m')
+            calculateOnSurface(-cubeWidth,cubeY,-cubeX,'\033[32m' + '~' + '\033[0m')
+            calculateOnSurface(-cubeX,cubeY,cubeWidth,'\033[38;5;208m' + '#' + '\033[0m')
+            calculateOnSurface(cubeX,-cubeWidth,-cubeY,'\033[38;5;159m' + ';' + '\033[0m')
+            calculateOnSurface(cubeX,cubeWidth,cubeY,"+" + '\033[0m')
 
     clear_terminal()
     for k in range(width * height):
@@ -76,6 +76,6 @@ while(True):
 
     A += 0.1
     B += 0.1
-    C += 0.1
+    C += 0.05
 
-    #time.sleep(0.016)
+    time.sleep(0.001)
