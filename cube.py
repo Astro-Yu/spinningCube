@@ -1,5 +1,4 @@
 import numpy as np
-import os
 import time
 
 cubeWidth = 20
@@ -12,6 +11,8 @@ K1 = 40
 horizontalOffset = 0
 incrementSpeed = 1.5
 backgroundASCIICode = ' '
+
+print("\x1b[2J",end='')
 
 def calculateX(i, j, k):
   return j * np.sin(A) * np.sin(B) * np.cos(C) - \
@@ -51,8 +52,8 @@ def calculateOnSurface(i, j, k, ch):
           buffer[idx] = ch
 
 def clear_terminal():
-    os.system('clear' if os.name == 'posix' else 'cls')          
-
+    print('\x1b[H')
+        
 
 while(True):
     
@@ -78,4 +79,4 @@ while(True):
     B += 0.1
     C += 0.05
 
-    time.sleep(0.001)
+    time.sleep(0.016)
